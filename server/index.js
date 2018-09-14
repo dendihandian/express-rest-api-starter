@@ -1,13 +1,7 @@
-// import express
-const express = require('express');
+// import and define express app instance
+const app = require('express')()
 
-// define express app instance
-const app = express()
-
-// import routes
-const routes = require('../routes/')
-
-// apply routes
-routes(app)
+// import and apply router
+require('../routes/')(app)
 
 module.exports = app
