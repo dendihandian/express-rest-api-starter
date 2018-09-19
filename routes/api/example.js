@@ -1,12 +1,12 @@
 const exampleRoutes = function (app) {
   app.route('/api/examples')
-    .get( function (req, res) {
+    .get(function (req, res) {
       res.status(200).json({
         message: 'Example List',
         data: {}
       })
     })
-    .post( function (req, res) {
+    .post(function (req, res) {
       res.status(201).json({
         message: 'Example Created',
         data: {}
@@ -14,7 +14,7 @@ const exampleRoutes = function (app) {
     })
 
   app.route('/api/examples/:id')
-    .get( function (req, res) {
+    .get(function (req, res) {
       res.status(200).json({
         message: 'Example Detail',
         data: {
@@ -22,7 +22,7 @@ const exampleRoutes = function (app) {
         }
       })
     })
-    .patch( function (req, res) {
+    .patch(function (req, res) {
       res.status(200).json({
         message: 'Example Updated',
         data: {
@@ -30,7 +30,7 @@ const exampleRoutes = function (app) {
         }
       })
     })
-    .delete( function (req, res) {
+    .delete(function (req, res) {
       res.status(200).json({
         message: 'Example Deleted',
         data: {
