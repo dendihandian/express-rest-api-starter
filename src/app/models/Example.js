@@ -1,4 +1,4 @@
-import mongoose from '../../modules/mongoose'
+import mongoose from '../../components/mongoose'
 const Schema = mongoose.Schema
 
 let exampleSchema = new Schema({
