@@ -1,4 +1,5 @@
 import Example from '../models/Example'
+import moment from 'moment'
 
 const listExample = (request, response) => {
   Example.find({}, (error, examples) => {
@@ -16,7 +17,8 @@ const listExample = (request, response) => {
         stringExample: example.string_example,
         numberExample: example.number_example,
         booleanExample: example.boolean_example,
-        dateExample: example.date_example
+        createdAt: moment(example.created_at).format('YYYY-DD-MM HH:mm:ss'),
+        updatedAt: moment(example.updated_at).format('YYYY-DD-MM HH:mm:ss')
       })
     })
 
@@ -34,7 +36,6 @@ const createExample = (request, response) => {
     string_example: input.stringExample,
     number_example: input.numberExample,
     boolean_example: input.booleanExample,
-    date_example: input.dateExample
   })
 
   newExample.save((error, example) => {
@@ -51,7 +52,8 @@ const createExample = (request, response) => {
         stringExample: example.string_example,
         numberExample: example.number_example,
         booleanExample: example.boolean_example,
-        dateExample: example.date_example
+        createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
       }
     })
   })
