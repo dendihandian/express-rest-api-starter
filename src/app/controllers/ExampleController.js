@@ -35,7 +35,7 @@ const createExample = (request, response) => {
   let newExample = new Example({
     string_example: input.stringExample,
     number_example: input.numberExample,
-    boolean_example: input.booleanExample,
+    boolean_example: input.booleanExample
   })
 
   newExample.save((error, example) => {
@@ -81,15 +81,49 @@ const showExample = (request, response) => {
   })
 }
 
-const updatedExample = (request, response) => {
-  response.status(200).json({
-    message: 'Example Updated'
+const updateExample = (request, response) => {
+  const input = request.body
+  const body = {
+    string_example: input.stringExample,
+    number_example: input.numberExample,
+    boolean_example: input.booleanExample
+  }
+  const options = {
+    new: true
+  }
+
+  Example.findOneAndUpdate({ _id: request.params.exampleId }, body, options, (error, example) => {
+    if (error) {
+      response.status(500).json({
+        message: error.message,
+        code: error.name
+      })
+    }
+    response.status(200).json({
+      message: 'Example Updated',
+      data: {
+        id: example._id,
+        stringExample: example.string_example,
+        numberExample: example.number_example,
+        booleanExample: example.boolean_example,
+        createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
+      }
+    })
   })
 }
 
 const deleteExample = (request, response) => {
-  response.status(200).json({
-    message: 'Example Deleted'
+  Example.findOneAndDelete({ _id: request.params.exampleId}, (error, result) => {
+    if (error) {
+      response.status(500).json({
+        message: error.message,
+        code: error.name
+      })
+    }
+    response.status(200).json({
+      message: 'Example Deleted'
+    })
   })
 }
 
@@ -97,6 +131,6 @@ module.exports = {
   listExample: listExample,
   createExample: createExample,
   showExample: showExample,
-  updatedExample: updatedExample,
+  updateExample: updateExample,
   deleteExample: deleteExample
 }

@@ -1,4 +1,4 @@
-import { listExample, createExample, showExample, updatedExample, deleteExample } from '../../app/controllers/ExampleController'
+import { listExample, createExample, showExample, updateExample, deleteExample } from '../../app/controllers/ExampleController'
 
 const exampleRoutes = function (app) {
   app.route('/api/examples')
@@ -7,7 +7,7 @@ const exampleRoutes = function (app) {
 
   app.route('/api/examples/:exampleId')
     .get(showExample)
-    .patch(updatedExample)
+    .patch(updateExample)
     .delete(deleteExample)
 }
 
