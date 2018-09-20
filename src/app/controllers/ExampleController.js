@@ -60,24 +60,32 @@ const createExample = (request, response) => {
 }
 
 const showExample = (request, response) => {
-  Example.findById(request.params.exampleId, (error, example) => {
+  Example.findOne({ _id: request.params.exampleId }, (error, example) => {
     if (error) {
       response.status(500).json({
         message: error.message,
         code: error.name
       })
     }
-    response.status(200).json({
-      message: 'Example Detail',
-      data: {
-        id: example._id,
-        stringExample: example.string_example,
-        numberExample: example.number_example,
-        booleanExample: example.boolean_example,
-        createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
-        updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
-      }
-    })
+
+    if (example == null) {
+      response.status(404).json({
+        message: 'Example Not Found',
+        code: 'ErrorNotFound'
+      })
+    } else {
+      response.status(200).json({
+        message: 'Example Detail',
+        data: {
+          id: example._id,
+          stringExample: example.string_example,
+          numberExample: example.number_example,
+          booleanExample: example.boolean_example,
+          createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
+          updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
+        }
+      })
+    }
   })
 }
 
@@ -99,31 +107,47 @@ const updateExample = (request, response) => {
         code: error.name
       })
     }
-    response.status(200).json({
-      message: 'Example Updated',
-      data: {
-        id: example._id,
-        stringExample: example.string_example,
-        numberExample: example.number_example,
-        booleanExample: example.boolean_example,
-        createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
-        updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
-      }
-    })
+
+    if (example == null) {
+      response.status(404).json({
+        message: 'Example Not Found',
+        code: 'ErrorNotFound'
+      })
+    } else {
+      response.status(200).json({
+        message: 'Example Updated',
+        data: {
+          id: example._id,
+          stringExample: example.string_example,
+          numberExample: example.number_example,
+          booleanExample: example.boolean_example,
+          createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
+          updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
+        }
+      })
+    }
   })
 }
 
 const deleteExample = (request, response) => {
-  Example.findOneAndDelete({ _id: request.params.exampleId}, (error, result) => {
+  Example.findOneAndDelete({ _id: request.params.exampleId }, (error, result) => {
     if (error) {
       response.status(500).json({
         message: error.message,
         code: error.name
       })
     }
-    response.status(200).json({
-      message: 'Example Deleted'
-    })
+
+    if (result == null) {
+      response.status(404).json({
+        message: 'Example Not Found',
+        code: 'ErrorNotFound'
+      })
+    } else {
+      response.status(200).json({
+        message: 'Example Deleted'
+      })
+    }
   })
 }
 
