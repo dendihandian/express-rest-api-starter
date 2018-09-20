@@ -1,11 +1,23 @@
+import Example from '../models/Example'
+
 const listExample = (request, response) => {
   response.status(200).json({
     message: 'Example List'
   })
 }
 const createExample = (request, response) => {
-  response.status(201).json({
-    message: 'Example Created'
+  let newExample = new Example(request.body)
+
+  newExample.save((error, example) => {
+    if (error) {
+      response.status(500).json({
+        message: error
+      })
+    }
+    response.status(201).json({
+      message: 'Example Created',
+      data: example
+    })
   })
 }
 const showExample = (request, response) => {
@@ -29,5 +41,5 @@ module.exports = {
   createExample: createExample,
   showExample: showExample,
   updatedExample: updatedExample,
-  deleteExample: deleteExample,
+  deleteExample: deleteExample
 }
