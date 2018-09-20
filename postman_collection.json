@@ -20,11 +20,10 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "localhost:3000/api/examples",
+							"raw": "{{express_server}}/api/examples",
 							"host": [
-								"localhost"
+								"{{express_server}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"examples"
@@ -45,14 +44,13 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\n}"
+							"raw": "{\n\t\"stringExample\": \"the quick brown fox jumps over a lazy dog\",\n\t\"numberExample\": 27017,\n\t\"booleanExample\": false,\n\t\"dateExample\": \"2018-08-18\"\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/api/examples",
+							"raw": "{{express_server}}/api/examples",
 							"host": [
-								"localhost"
+								"{{express_server}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"examples"
@@ -73,15 +71,14 @@
 						],
 						"body": {},
 						"url": {
-							"raw": "localhost:3000/api/examples/1",
+							"raw": "{{express_server}}/api/examples/{{example_id}}",
 							"host": [
-								"localhost"
+								"{{express_server}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"examples",
-								"1"
+								"{{example_id}}"
 							]
 						}
 					},
@@ -99,18 +96,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\n}"
+							"raw": "{\n\t\"stringExample\": \"the lazy dog jumps over a quick brown fox\",\n\t\"numberExample\": 3306,\n\t\"booleanExample\": true,\n\t\"dateExample\": \"2019-09-19\"\n}"
 						},
 						"url": {
-							"raw": "localhost:3000/api/examples/1",
+							"raw": "{{express_server}}/api/examples/{{example_id}}",
 							"host": [
-								"localhost"
+								"{{express_server}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"examples",
-								"1"
+								"{{example_id}}"
 							]
 						}
 					},
@@ -128,18 +124,17 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\n}"
+							"raw": ""
 						},
 						"url": {
-							"raw": "localhost:3000/api/examples/1",
+							"raw": "{{express_server}}/api/examples/{{example_id}}",
 							"host": [
-								"localhost"
+								"{{express_server}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"examples",
-								"1"
+								"{{example_id}}"
 							]
 						}
 					},
