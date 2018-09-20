@@ -1,15 +1,33 @@
-const Example = require('../models/Example')
-
-const createExample = function (req, res) {
-  let newExample = new Example(req.body)
-  newExample.save(function (error, example) {
-    if (error) {
-      res.send(error)
-    }
-    res.json(example)
+const listExample = (request, response) => {
+  response.status(200).json({
+    message: 'Example List'
+  })
+}
+const createExample = (request, response) => {
+  response.status(201).json({
+    message: 'Example Created'
+  })
+}
+const showExample = (request, response) => {
+  response.status(200).json({
+    message: 'Example Detail'
+  })
+}
+const updatedExample = (request, response) => {
+  response.status(200).json({
+    message: 'Example Updated'
+  })
+}
+const deleteExample = (request, response) => {
+  response.status(200).json({
+    message: 'Example Deleted'
   })
 }
 
 module.exports = {
-  createExample: createExample
+  listExample: listExample,
+  createExample: createExample,
+  showExample: showExample,
+  updatedExample: updatedExample,
+  deleteExample: deleteExample,
 }

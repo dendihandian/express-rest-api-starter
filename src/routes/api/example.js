@@ -1,43 +1,14 @@
+import { listExample, createExample, showExample, updatedExample, deleteExample } from '../../app/controllers/ExampleController'
+
 const exampleRoutes = function (app) {
   app.route('/api/examples')
-    .get(function (req, res) {
-      res.status(200).json({
-        message: 'Example List',
-        data: {}
-      })
-    })
-    .post(function (req, res) {
-      res.status(201).json({
-        message: 'Example Created',
-        data: {}
-      })
-    })
+    .get(listExample)
+    .post(createExample)
 
   app.route('/api/examples/:id')
-    .get(function (req, res) {
-      res.status(200).json({
-        message: 'Example Detail',
-        data: {
-          id: parseInt(req.params.id)
-        }
-      })
-    })
-    .patch(function (req, res) {
-      res.status(200).json({
-        message: 'Example Updated',
-        data: {
-          id: parseInt(req.params.id)
-        }
-      })
-    })
-    .delete(function (req, res) {
-      res.status(200).json({
-        message: 'Example Deleted',
-        data: {
-          id: parseInt(req.params.id)
-        }
-      })
-    })
+    .get(showExample)
+    .patch(updatedExample)
+    .delete(deleteExample)
 }
 
 module.exports = exampleRoutes
