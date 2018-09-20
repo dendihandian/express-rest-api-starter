@@ -7,6 +7,7 @@
     "start": "node index.js",
     "dev": "npm run lint --fix && nodemon index.js --exec babel-node -e js",
     "lint": "eslint \"**/*.js\"",
+    "build": "babel src --out-dir dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
