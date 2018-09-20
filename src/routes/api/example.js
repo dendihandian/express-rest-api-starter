@@ -5,7 +5,7 @@ const exampleRoutes = function (app) {
     .get(listExample)
     .post(createExample)
 
-  app.route('/api/examples/:id')
+  app.route('/api/examples/:exampleId')
     .get(showExample)
     .patch(updatedExample)
     .delete(deleteExample)

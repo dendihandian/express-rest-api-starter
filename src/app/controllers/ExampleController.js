@@ -60,8 +60,24 @@ const createExample = (request, response) => {
 }
 
 const showExample = (request, response) => {
-  response.status(200).json({
-    message: 'Example Detail'
+  Example.findById(request.params.exampleId, (error, example) => {
+    if (error) {
+      response.status(500).json({
+        message: error.message,
+        code: error.name
+      })
+    }
+    response.status(200).json({
+      message: 'Example Detail',
+      data: {
+        id: example._id,
+        stringExample: example.string_example,
+        numberExample: example.number_example,
+        booleanExample: example.boolean_example,
+        createdAt: moment(example.created_at).format('YYYY-MM-DD HH:mm:ss'),
+        updatedAt: moment(example.updated_at).format('YYYY-MM-DD HH:mm:ss')
+      }
+    })
   })
 }
 
