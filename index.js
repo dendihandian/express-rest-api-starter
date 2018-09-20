@@ -4,6 +4,9 @@ require('dotenv').config()
 // import express
 const server = require('./server')
 
-server.listen(process.env.APP_PORT, () =>
-  console.log(`Server is running on port ${process.env.APP_PORT}`)
+// define port
+const port = process.env.APP_PORT || 3000
+
+server.listen(port, () =>
+  console.log(`Server is running on port ${port}`)
 )
