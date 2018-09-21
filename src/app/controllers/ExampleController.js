@@ -1,5 +1,6 @@
 import Example from '../models/Example'
 import moment from 'moment'
+import { validationResult } from 'express-validator/check'
 
 const listExample = (request, response) => {
   Example.find({}, (error, examples) => {
@@ -30,6 +31,14 @@ const listExample = (request, response) => {
 }
 
 const createExample = (request, response) => {
+  const errors = validationResult(request)
+  if (!errors.isEmpty()) {
+    return response.status(422).json({
+      message: 'Validation Error',
+      errors: errors.array()
+    })
+  }
+
   const input = request.body
 
   let newExample = new Example({
@@ -90,6 +99,14 @@ const showExample = (request, response) => {
 }
 
 const updateExample = (request, response) => {
+  const errors = validationResult(request)
+  if (!errors.isEmpty()) {
+    return response.status(422).json({
+      message: 'Validation Error',
+      errors: errors.array()
+    })
+  }
+
   const input = request.body
   const body = {
     string_example: input.stringExample,
